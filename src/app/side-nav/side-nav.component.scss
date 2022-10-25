@@ -1,0 +1,18 @@
+.example-container {
+  height: calc(100% - 60px);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: red;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+}
+
+.example-sidenav {
+  padding: 20px;
+  width: 300px;
+}
