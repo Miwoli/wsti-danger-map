@@ -54,7 +54,7 @@ jobs:
           KEY: ${{ secrets.KEY }}
         with:
           source: 'build.tar.gz'
-          target: '/var/www/map.miwoli.pl/${{ secrets.DEVELOP_URL }}'
+          target: '/var/www/map.miwoli.pl/'
 
       - name: 'Execute remote'
         uses: appleboy/ssh-action@master
@@ -64,5 +64,5 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.KEY }}
           script: |
-            cd /var/www/map.miwoli.pl/${{ secrets.DEVELOP_URL }}
+            cd /var/www/map.miwoli.pl/
             tar -xzvf build.tar.gz
