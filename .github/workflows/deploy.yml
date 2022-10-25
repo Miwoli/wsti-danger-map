@@ -48,7 +48,7 @@ jobs:
       - name: 'Deploy'
         uses: appleboy/scp-action@master
         env:
-          HOST: ${{ secrets.ADDRESS }}
+          HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.KEY }}
@@ -59,7 +59,7 @@ jobs:
       - name: 'Execute remote'
         uses: appleboy/ssh-action@master
         with:
-          HOST: ${{ secrets.ADDRESS }}
+          HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.KEY }}
