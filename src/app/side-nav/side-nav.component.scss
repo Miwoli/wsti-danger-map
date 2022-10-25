@@ -1,18 +1,28 @@
-.example-container {
-  height: calc(100% - 60px);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  background-color: red;
+.container {
+  height: calc(100% - 64px);
 }
 
-.example-sidenav-content {
+.sidenav-content {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: green;
 }
 
-.example-sidenav {
+.sidenav {
   padding: 20px;
   width: 300px;
+
+  .drawer-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .footer {
+      border-top: 1px solid black;
+      padding-top: 10px;
+      text-align: center;
+    }
+  }
 }

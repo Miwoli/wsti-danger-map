@@ -1,13 +1,30 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="opened">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" [opened]="opened">
+    <div class="drawer-content">
+      <div>
+        <div *ngIf="showFiller">
+          <form>
+            <mat-form-field>
+              <mat-label>Login</mat-label>
+              <input matInput />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput />
+            </mat-form-field>
+          </form>
+        </div>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+          Toggle extra text
+        </button>
+      </div>
+      <div class="footer">
+        <p>Made by Ola & MW. Pozdro</p>
+      </div>
+    </div>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
+  <div class="sidenav-content">
     <app-map></app-map>
   </div>
 </mat-drawer-container>

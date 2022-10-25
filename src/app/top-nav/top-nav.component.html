@@ -1,11 +1,24 @@
-<div>
-  <button
+<mat-toolbar class="mat-elevation-z8">
+  <div>
+    <button
+      mat-icon-button
+      color="primary"
+      aria-label="Example icon button with a menu icon"
+      (click)="handleClick()"
+      matRipple
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <button mat-raised-button matRipple color="primary" class="loginBtn">
+    <mat-icon>person</mat-icon><span>Login</span>
+  </button>
+  <!-- <button
     mat-icon-button
-    color="accent"
+    color="primary"
     aria-label="Example icon button with a menu icon"
-    (click)="handleClick()"
     matRipple
   >
-    <mat-icon>menu</mat-icon>
-  </button>
-</div>
+    <mat-icon>person</mat-icon>
+  </button> -->
+</mat-toolbar>
