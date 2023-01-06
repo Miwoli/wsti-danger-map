@@ -1,0 +1,36 @@
+<mat-toolbar class="header mat-elevation-z8">
+  <button mat-icon-button (click)="handleMenuClick()">
+    <mat-icon color="primary">menu</mat-icon>
+  </button>
+  <a routerLink="">
+    <h1>
+      Danger Zone <span class="version">v.{{ version }}</span>
+    </h1>
+  </a>
+  <span class="actions">
+    <button *ngIf="isLoggedIn" mat-stroked-button (click)="toggleEditMode()">
+      <ng-container
+        *ngIf="
+          eventsListMode === 'create' || eventsListMode === 'edit';
+          else edit
+        ">
+        <mat-icon color="primary">cancel</mat-icon>
+        <span class="btn-text"> Cancel</span>
+      </ng-container>
+      <ng-template #edit>
+        <mat-icon color="primary">library_add</mat-icon>
+        <span class="btn-text"> Create event</span>
+      </ng-template>
+    </button>
+    <button mat-stroked-button (click)="handleLogin()">
+      <ng-container *ngIf="isLoggedIn; else login">
+        <mat-icon color="primary">logout</mat-icon>
+        <span class="btn-text"> Logout</span>
+      </ng-container>
+      <ng-template #login>
+        <mat-icon color="primary">login</mat-icon>
+        <span class="btn-text"> Login</span>
+      </ng-template>
+    </button>
+  </span>
+</mat-toolbar>

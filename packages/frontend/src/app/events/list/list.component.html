@@ -1,0 +1,39 @@
+<jugger-filters></jugger-filters>
+<mat-accordion>
+  <mat-expansion-panel
+    *ngFor="let event of events"
+    [expanded]="event.id === this.selectedEvent?.id"
+    (click)="handleOpen(event)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ event.attributes.Title }}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ event.attributes.Date | date : 'd.MM.YYYY HH:mm' }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>
+      {{ event.attributes.Description }}
+    </p>
+    <mat-action-row
+      [ngClass]="{
+        'has-actions':
+          event.attributes.CreatedBy?.data?.attributes?.username === activeUser
+      }">
+      <span
+        *ngIf="
+          event.attributes.CreatedBy?.data?.attributes?.username === activeUser
+        ">
+        <button mat-stroked-button (click)="remove(event.id)">
+          <mat-icon color="primary">delete</mat-icon><span> Remove</span>
+        </button>
+        <button mat-stroked-button (click)="edit()">
+          <mat-icon color="primary">edit</mat-icon><span> Edit</span>
+        </button>
+      </span>
+      <span class="created-by">
+        By: {{ event.attributes.CreatedBy?.data?.attributes?.username }}
+      </span>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

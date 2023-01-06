@@ -1,0 +1,21 @@
+:host {
+  margin-bottom: 10px;
+}
+
+mat-panel-description {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 50%;
+  margin: 10px 0;
+
+  &:nth-child(odd) {
+    padding-right: 10px;
+  }
+
+  &:nth-child(even) {
+    padding-left: 10px;
+  }
+}

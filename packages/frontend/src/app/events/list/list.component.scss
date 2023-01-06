@@ -1,0 +1,32 @@
+@use '../../../assets/styles/vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  padding: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-accordion {
+  overflow: auto;
+  height: 100%;
+
+  .mat-expanded {
+    background-color: mat.get-color-from-palette(mat.$blue-grey-palette, 500);
+  }
+}
+
+.mat-action-row {
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px;
+
+  &.has-actions {
+    justify-content: space-between;
+  }
+
+  .created-by {
+    margin-right: 8px;
+  }
+}

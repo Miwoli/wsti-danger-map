@@ -1,0 +1,23 @@
+<mat-nav-list>
+  <a
+    #homeActive="routerLinkActive"
+    mat-list-item
+    mat-line
+    routerLinkActive
+    [routerLink]="''"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [disabled]="homeActive.isActive"
+    >Home</a
+  >
+  <a
+    #privacyActive="routerLinkActive"
+    mat-list-item
+    mat-line
+    routerLinkActive="active"
+    routerLinkActive
+    [routerLink]="'privacy-policy'"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [disabled]="privacyActive.isActive"
+    >Privacy policy</a
+  >
+</mat-nav-list>

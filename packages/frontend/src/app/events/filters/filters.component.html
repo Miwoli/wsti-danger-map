@@ -1,0 +1,66 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-description>
+        <mat-chip-list>
+          <ng-container *ngFor="let filter of activeFilters | keyvalue">
+            <mat-chip *ngIf="filter.value" (removed)="remove(filter.key)">
+              <mat-icon matChipAvatar>{{ filtersIcons[filter.key] }}</mat-icon>
+              {{
+                filter.key === 'Date'
+                  ? selectedDate.start?.format('d.MM.YYYY') +
+                    ' - ' +
+                    selectedDate.end?.format('d.MM.YYYY')
+                  : filter.value
+              }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </ng-container>
+        </mat-chip-list>
+        <mat-icon color="primary">search</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label><mat-icon>title</mat-icon> Title</mat-label>
+        <input matInput type="text" formControlName="Title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>subtitles</mat-icon> Description</mat-label>
+        <input matInput type="text" formControlName="Description" />
+      </mat-form-field>
+      <mat-form-field (click)="openPicker()">
+        <mat-label><mat-icon>date_range</mat-icon> Date range</mat-label>
+        <mat-date-range-input
+          formGroupName="Date"
+          [rangePicker]="picker"
+          disabled="true">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date" />
+          <input matEndDate formControlName="end" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-hint>D.MM.YYYY - D.MM.YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>pin_drop</mat-icon> Location</mat-label>
+        <input matInput type="text" formControlName="Location" />
+      </mat-form-field>
+    </form>
+    <mat-action-row>
+      <button mat-stroked-button (click)="clear()">
+        <mat-icon color="primary">clear</mat-icon> Clear
+      </button>
+      <button mat-stroked-button (click)="search()">
+        <mat-icon color="primary">search</mat-icon> Search
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

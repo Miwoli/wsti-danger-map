@@ -1,0 +1,96 @@
+<h1 mat-dialog-title>
+  {{
+    this.isForgotPassword
+      ? 'Forgot password?'
+      : this.data.isRegister
+      ? 'Register'
+      : 'Login'
+  }}
+</h1>
+<form mat-dialog-content [formGroup]="this.data.form">
+  <mat-form-field *ngIf="this.data.isRegister">
+    <mat-label><mat-icon>person</mat-icon> Username</mat-label>
+    <input
+      matInput
+      formControlName="username"
+      type="text"
+      placeholder="joe.doe1" />
+    <mat-error *ngIf="this.data.form?.get('username')?.hasError('required')">
+      This field is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label><mat-icon>mail</mat-icon> Email</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      type="email"
+      placeholder="joe.doe@example.com" />
+    <mat-error *ngIf="this.data.form?.get('email')?.hasError('required')">
+      This field is <strong>required</strong>
+    </mat-error>
+    <mat-error
+      *ngIf="
+        this.data.form?.get('email')?.hasError('email') &&
+        !this.data.form?.get('email')?.hasError('required')
+      ">
+      Invalid <strong>email format</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="!this.isForgotPassword">
+    <mat-label><mat-icon>password</mat-icon> Password</mat-label>
+    <input matInput formControlName="password" type="password" />
+    <mat-error *ngIf="this.data.form?.get('password')?.hasError('required')">
+      This field is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="this.data.form?.get('password')?.hasError('minlength')">
+      Password must be at least <strong>6 characters</strong> long
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="this.data.isRegister">
+    <mat-label><mat-icon>password</mat-icon> Confirm password</mat-label>
+    <input
+      matInput
+      formControlName="confirmPassword"
+      type="password"
+      [errorStateMatcher]="customErrorStateMatcher" />
+    <mat-error
+      *ngIf="this.data.form?.get('confirmPassword')?.hasError('required')">
+      This field is <strong>required</strong>
+    </mat-error>
+    <mat-error
+      *ngIf="this.data.form?.get('confirmPassword')?.hasError('minlength')">
+      Password must be at least <strong>6 characters</strong> long
+    </mat-error>
+    <mat-error
+      *ngIf="
+        this.data.form?.hasError('mismatch') &&
+        !this.data.form?.get('confirmPassword')?.hasError('required')
+      ">
+      This field must match <strong>password</strong> field
+    </mat-error>
+  </mat-form-field>
+  <mat-error *ngIf="formError">
+    {{ formError }}
+  </mat-error>
+</form>
+<button *ngIf="!this.data.isRegister" (click)="toggleForgotPass()">
+  {{ this.isForgotPassword ? 'Login' : 'Forgot password?' }}
+</button>
+<div mat-dialog-actions align="end">
+  <button
+    *ngIf="!this.isForgotPassword"
+    mat-stroked-button
+    (click)="toggleRegister()">
+    {{ this.data.isRegister ? 'Already a user?' : 'Create an account' }}
+  </button>
+  <button mat-stroked-button (click)="handleSubmit()">
+    {{
+      this.isForgotPassword
+        ? 'Submit'
+        : this.data.isRegister
+        ? 'Register'
+        : 'Login'
+    }}
+  </button>
+</div>

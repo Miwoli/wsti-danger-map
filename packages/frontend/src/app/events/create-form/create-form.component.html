@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Create event</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="this.form">
+      <mat-form-field>
+        <mat-label><mat-icon>title</mat-icon> Title</mat-label>
+        <input matInput type="text" formControlName="Title" />
+        <mat-error *ngIf="this.form.get('Title')?.hasError('required')">
+          This field is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>subtitles</mat-icon> Description</mat-label>
+        <textarea matInput formControlName="Description"></textarea>
+        <mat-error *ngIf="this.form.get('Description')?.hasError('required')">
+          This field is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field (click)="openPicker()">
+        <mat-label><mat-icon>event</mat-icon> Date</mat-label>
+        <input
+          matInput
+          formControlName="Date"
+          placeholder="1.01.2020 12:00"
+          [ngxMatDatetimePicker]="picker" />
+        <mat-hint>Use datepicker to select</mat-hint>
+        <mat-error *ngIf="this.form.get('Date')?.hasError('required')">
+          This field is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="this.form.get('Date')?.hasError('invalid')">
+          Invalid format. Expected <strong>D.MM.YYYY HH:mm</strong>
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+        </mat-datepicker-toggle>
+        <ngx-mat-datetime-picker
+          #picker
+          [disabled]="false"
+          [showSeconds]="false"
+          [enableMeridian]="false"></ngx-mat-datetime-picker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>pin_drop</mat-icon> Location</mat-label>
+        <input matInput formControlName="Coordinates" placeholder="[0, 0]" />
+        <mat-hint>Click on the map to select location</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-stroked-button (click)="saveEvent()">
+      <mat-icon color="primary">save</mat-icon> Submit
+    </button>
+  </mat-card-actions>
+</mat-card>

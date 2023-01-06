@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <jugger-map></jugger-map>
+  <ng-container [ngSwitch]="eventsListMode">
+    <jugger-list *ngSwitchCase="'list'"></jugger-list>
+    <jugger-create-form *ngSwitchCase="'create'"></jugger-create-form>
+    <jugger-edit-form *ngSwitchCase="'edit'"></jugger-edit-form>
+  </ng-container>
+</div>
